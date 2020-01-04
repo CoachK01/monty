@@ -5,6 +5,7 @@ push 10
 push -10
                            push                 -100                  
      push              -   2849 ;;fafad
+     push     -     741234
 pall
 push 10-
 pall
