@@ -34,7 +34,7 @@ int main(int ac, char **av)
 		line_number++;
 		treat_line(&head, line);
 	}
-
 	free(line);
+	fclose(fp);
 	exit(EXIT_SUCCESS);
 }
