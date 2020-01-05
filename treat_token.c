@@ -44,8 +44,9 @@ void (*get_function(char *token))(stack_t **, unsigned int)
 	int i;
 	instruction_t ops[] = {
 		{"pall", _pall},
+		{"pint", _pint},
 /*
-**		{"pint", _pint},
+**
 		{"pop", _pop},
 		{"swap", _swap},
 		{"add", _add},
