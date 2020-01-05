@@ -9,7 +9,7 @@
 
 void _pint(stack_t **head, unsigned int line_number)
 {
-	if (head == NULL || *head == NULL)
+	if (head == NULL && *head == NULL)
 	{
 		dprintf(
 			STDERR_FILENO,
