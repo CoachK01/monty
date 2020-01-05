@@ -1,7 +1,5 @@
 #include "monty.h"
 
-unsigned int line_number = 0;
-
 /**
  * main - the main function.
  * @ac: arguments number.
@@ -15,6 +13,7 @@ int main(int ac, char **av)
 	size_t size = 0;
 	ssize_t len;
 	stack_t *head = NULL;
+	int line_number = 0;
 
 	if (ac != 2)
 	{
@@ -32,7 +31,7 @@ int main(int ac, char **av)
 	while ((len = getline(&line, &size, fp)) != -1)
 	{
 		line_number++;
-		treat_line(&head, line);
+		treat_line(&head, line, line_number);
 	}
 	free_list(&head, fp, line);
 	exit(EXIT_SUCCESS);

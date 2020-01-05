@@ -5,9 +5,10 @@
  * to check for the correct command.
  * @head: linked list' head address.
  * @line: line we're treating from the monty file.
+ * @line_number: line number.
  * Return: nothing.
  */
-void treat_line(stack_t **head, char *line)
+void treat_line(stack_t **head, char *line, unsigned int line_number)
 {
 	char *token = NULL;
 
@@ -16,5 +17,5 @@ void treat_line(stack_t **head, char *line)
 		token = strtok(NULL, " \n");
 	if (!token)
 		return;
-	treat_token(head, token);
+	treat_token(head, token, line_number);
 }

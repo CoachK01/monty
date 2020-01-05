@@ -40,9 +40,10 @@ void _push(stack_t **head, unsigned int line_number, char *arg)
 /**
  * check_push_arg - check if a push command has an arg in its line.
  * @token: token corresponding the push's line.
+ * @line_number: line number.
  * Return: pointer to character representing the push's arg or NULL.
  */
-char *check_push_arg(char *token)
+char *check_push_arg(char *token, unsigned int line_number)
 {
 	char *token2;
 	char *arg;
@@ -56,7 +57,7 @@ char *check_push_arg(char *token)
 		token2 = strtok(NULL, " \n");
 
 	if (!token2)
-		get_usage_err();
+		get_usage_err(line_number);
 	for (len = 0;
 	     (token2[len] && token2[len] != '\n' && token2[len] != ' ');
 	     len++)
@@ -65,21 +66,22 @@ char *check_push_arg(char *token)
 	arg = malloc(sizeof(char) * (len + 1));
 
 	if (!arg)
-		get_usage_err();
+		get_usage_err(line_number);
 
 	for (i = 0; i < len; i++)
 		arg[i] = token2[i];
 	arg[i] = '\0';
 
-	is_number(arg);
+	is_number(arg, line_number);
 
 	return (arg);
 }
 
 /**
  * get_usage_err - displays usage error.
+ * @line_number: line_number.
  */
-void get_usage_err(void)
+void get_usage_err(unsigned int line_number)
 {
 		dprintf(
 			STDERR_FILENO,
@@ -91,14 +93,15 @@ void get_usage_err(void)
 /**
  * is_number - check if the push argument is a number of not
  * @str: the token that's retrieved after a found 'push' command.
+ * @line_number: line number.
  * in a given line.
  */
-void is_number(char *str)
+void is_number(char *str, unsigned int line_number)
 {
 	int i = 0;
 
 	if (!(str[i] >= 48 && str[i] <= 57) && str[i] != '-')
-		get_usage_err();
+		get_usage_err(line_number);
 	else
 		i++;
 
@@ -107,6 +110,6 @@ void is_number(char *str)
 		if (str[i] >= 48 && str[i] <= 57)
 			i++;
 		else
-			get_usage_err();
+			get_usage_err(line_number);
 	}
 }

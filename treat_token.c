@@ -6,16 +6,17 @@
  * or if it's invalid.
  * @head: linked list's head address.
  * @token: token to check.
+ * @line_number: line number.
  * Return: nothing.
  */
-void treat_token(stack_t **head, char *token)
+void treat_token(stack_t **head, char *token, unsigned int line_number)
 {
 	char *push_arg;
 	void (*f)(stack_t **head, unsigned int line_number);
 
 	if (!strncmp("push", token, 4) && (token[4] == '\0'))
 	{
-		push_arg = check_push_arg(token);
+		push_arg = check_push_arg(token, line_number);
 		if (push_arg != 0)
 		{
 			_push(head, line_number, push_arg);
@@ -27,7 +28,7 @@ void treat_token(stack_t **head, char *token)
 
 	if (!f)
 	{
-		get_invalid_opcode(token);
+		get_invalid_opcode(token, line_number);
 	}
 
 	f(head, line_number);
@@ -83,9 +84,10 @@ void (*get_function(char *token))(stack_t **, unsigned int)
  * get_invalid_opcode - function to malloc invalid command and display
  * its corresponding error.
  * @token: invalid command (or opcode).
+ * @line_number: line number.
  * Return: nothing.
  */
-void get_invalid_opcode(char *token)
+void get_invalid_opcode(char *token, unsigned int line_number)
 {
 	int i, len;
 	char *invalid_opcode;
