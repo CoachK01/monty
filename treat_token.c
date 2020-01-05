@@ -50,11 +50,12 @@ void (*get_function(char *token))(stack_t **, unsigned int)
 		{"add", _add},
 		{"nop", _nop},
 		{"sub", _sub},
-/*
-**
+
 		{"div", _div},
 		{"mul", _mul},
 		{"mod", _mod},
+/*
+**
 		{"pchar", _pchar},
 		{"pstr", _pstr},
 		{"rotl", _rotl},
