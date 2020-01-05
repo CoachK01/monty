@@ -9,14 +9,15 @@
  */
 void free_list(stack_t **head, FILE *fp, char *line)
 {
-	if (!(*head))
-		return;
-	while ((*head)->next)
+	if (*head != NULL)
 	{
-		(*head) = (*head)->next;
-		free((*head)->prev);
+		while ((*head)->next)
+		{
+			(*head) = (*head)->next;
+			free((*head)->prev);
+		}
+		free(*head);
 	}
-	free(*head);
 	fclose(fp);
 	free(line);
 }
