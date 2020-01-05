@@ -17,7 +17,8 @@ void _pchar(stack_t **head, unsigned int line_number)
 				"L%d: can't pchar, stack empty\n",
 				line_number
 		       );
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 
 	n = (*head)->n;
@@ -29,7 +30,8 @@ void _pchar(stack_t **head, unsigned int line_number)
 				"L%d: can't pchar, value out of range\n",
 				line_number
 		       );
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 	putchar(n);
 	putchar('\n');

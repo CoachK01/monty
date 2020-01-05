@@ -17,7 +17,8 @@ void _mul(stack_t **head, unsigned int line_number)
 				"L%d: can't mul, stack too short\n",
 				line_number
 		       );
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 
 	mul = (((*head)->next)->n) * ((*head)->n);

@@ -17,7 +17,8 @@ void _div(stack_t **head, unsigned int line_number)
 				"L%d: can't div, stack too short\n",
 				line_number
 		       );
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 	if ((*head)->n == 0)
 	{
@@ -26,7 +27,8 @@ void _div(stack_t **head, unsigned int line_number)
 				"L%d: division by zero\n",
 				line_number
 		       );
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 
 

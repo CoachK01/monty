@@ -17,7 +17,8 @@ void _sub(stack_t **head, unsigned int line_number)
 			"L%d: can't sub, stack too short\n",
 			line_number
 			);
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 
 	sub = (((*head)->next)->n) - ((*head)->n);

@@ -17,7 +17,8 @@ void _swap(stack_t **head, unsigned int line_number)
 			"L%d: can't swap, stack too short\n",
 			line_number
 			);
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 
 	n = (*head)->n;
