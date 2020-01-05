@@ -50,7 +50,6 @@ void (*get_function(char *token))(stack_t **, unsigned int)
 		{"add", _add},
 		{"nop", _nop},
 		{"sub", _sub},
-
 		{"div", _div},
 		{"mul", _mul},
 		{"mod", _mod},
@@ -65,13 +64,15 @@ void (*get_function(char *token))(stack_t **, unsigned int)
 */
 		{NULL, NULL}
 	};
+	if (token[0] == '#')
+		return (_nop);
 
 	for (i = 0; ops[i].opcode; i++)
 	{
 		if (
-			!strncmp(token, ops[i].opcode, strlen(ops[i].opcode)) &&
-			(token[strlen(ops[i].opcode)] == '\0')
-			)
+				!strncmp(token, ops[i].opcode, strlen(ops[i].opcode)) &&
+				(token[strlen(ops[i].opcode)] == '\0')
+		   )
 			return (ops[i].f);
 	}
 
