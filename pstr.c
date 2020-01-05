@@ -16,7 +16,7 @@ void _pstr(stack_t **head, unsigned int line_number)
 	if (*head == NULL)
 	{
 		printf("\n");
-		break;
+		return;
 	}
 
 
@@ -27,8 +27,7 @@ void _pstr(stack_t **head, unsigned int line_number)
 			putchar(n);
 		else if (n == 0 || (!(n >= 1 && n <= 127)))
 		{
-			error = 1;
-			return;
+			break;
 		}
 		tmp = tmp->next;
 	}
