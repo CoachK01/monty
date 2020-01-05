@@ -13,7 +13,7 @@ void _pint(stack_t **head, unsigned int line_number)
 	{
 		dprintf(
 			STDERR_FILENO,
-			"L%u: can't pint, stack empty\n",
+			"L%d: can't pint, stack empty\n",
 			line_number
 			);
 		error = 1;
