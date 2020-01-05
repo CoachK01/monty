@@ -46,10 +46,10 @@ void (*get_function(char *token))(stack_t **, unsigned int)
 		{"pall", _pall},
 		{"pint", _pint},
 		{"pop", _pop},
-/*
-**
 		{"swap", _swap},
 		{"add", _add},
+/*
+**
 		{"nop", _nop},
 		{"sub", _sub},
 		{"div", _div},
