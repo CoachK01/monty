@@ -23,9 +23,9 @@ void _pstr(stack_t **head, unsigned int line_number)
 	while (tmp)
 	{
 		n = tmp->n;
-		if (n && ((n >= 65 && n <= 90) || (n >= 97 && n <= 122)))
+		if (n && (n >= 32 && n <= 126))
 			putchar(n);
-		else if (n == 0 || (!(n >= 1 && n <= 255)))
+		else if (n == 0 || (!(n >= 1 && n <= 127)))
 			break;
 		tmp = tmp->next;
 	}
