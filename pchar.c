@@ -22,7 +22,7 @@ void _pchar(stack_t **head, unsigned int line_number)
 
 	n = (*head)->n;
 
-	if (!((n >= 65 && n <= 90) || (n >= 97 && n <= 122)))
+	if (!(n >= 32 && n <= 126))
 	{
 		dprintf(
 				STDERR_FILENO,
