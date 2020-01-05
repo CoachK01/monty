@@ -16,8 +16,7 @@ void _pstr(stack_t **head, unsigned int line_number)
 	if (*head == NULL)
 	{
 		printf("\n");
-		error = 1;
-		return;
+		break;
 	}
 
 
