@@ -38,12 +38,15 @@ typedef struct instruction_s
 } instruction_t;
 
 void _push(stack_t **stack, unsigned int line_number, char *str);
+
 char *check_push_arg(char *token);
 
 void treat_line(stack_t **head, char *line);
 
 void treat_token(stack_t **head, char *token);
+
 void (*get_function(char *token))(stack_t **, unsigned int);
+
 void get_invalid_opcode(char *token);
 
 void is_number(char *str);
