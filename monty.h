@@ -78,6 +78,6 @@ void _rotl(stack_t **head, unsigned int line_number);
 
 void _rotr(stack_t **head, unsigned int line_number);
 
-void free_stack(stack_t **head);
+void free_list(stack_t **head);
 
 #endif

@@ -35,7 +35,7 @@ int main(int ac, char **av)
 		treat_line(&head, line);
 	}
 	free(line);
-	free(head);
+	free_list(&head);
 	fclose(fp);
 	exit(EXIT_SUCCESS);
 }

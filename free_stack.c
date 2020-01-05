@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
- * free_stack - frees the stack
+ * free_list - frees the linked list
  * @head: head of the stack
  */
 
-void free_stack(stack_t **head)
+void free_list(stack_t **head)
 {
 	if (!(*head))
 		return;
