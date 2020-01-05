@@ -19,7 +19,8 @@ void _push(stack_t **head, unsigned int line_number, char *arg)
 	if (new == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 	new->n = num;
 	if (*head == NULL)
@@ -57,7 +58,10 @@ char *check_push_arg(char *token, unsigned int line_number)
 		token2 = strtok(NULL, " \n");
 
 	if (!token2)
+	{
 		get_usage_err(line_number);
+		return (NULL);
+	}
 	for (len = 0;
 	     (token2[len] && token2[len] != '\n' && token2[len] != ' ');
 	     len++)
@@ -66,14 +70,17 @@ char *check_push_arg(char *token, unsigned int line_number)
 	arg = malloc(sizeof(char) * (len + 1));
 
 	if (!arg)
+	{
 		get_usage_err(line_number);
+		return (NULL);
+	}
 
 	for (i = 0; i < len; i++)
 		arg[i] = token2[i];
 	arg[i] = '\0';
 
-	is_number(arg, line_number);
-
+	if (is_number(arg, line_number) == 1)
+		return (NULL);
 	return (arg);
 }
 
@@ -87,7 +94,7 @@ void get_usage_err(unsigned int line_number)
 			STDERR_FILENO,
 			"L%d: usage: push integer\n",
 			line_number);
-		exit(EXIT_FAILURE);
+		error = 1;
 }
 
 /**
@@ -95,13 +102,17 @@ void get_usage_err(unsigned int line_number)
  * @str: the token that's retrieved after a found 'push' command.
  * @line_number: line number.
  * in a given line.
+ * Return: int.
  */
-void is_number(char *str, unsigned int line_number)
+int is_number(char *str, unsigned int line_number)
 {
 	int i = 0;
 
 	if (!(str[i] >= 48 && str[i] <= 57) && str[i] != '-')
+	{
 		get_usage_err(line_number);
+		return (1);
+	}
 	else
 		i++;
 
@@ -110,6 +121,10 @@ void is_number(char *str, unsigned int line_number)
 		if (str[i] >= 48 && str[i] <= 57)
 			i++;
 		else
+		{
 			get_usage_err(line_number);
+			return (1);
+		}
 	}
+	return (0);
 }

@@ -5,11 +5,14 @@
  * check if it's valid and has the necessary args
  * or if it's invalid.
  * @head: linked list's head address.
+ * @fp: file pointer.
+ * @line: line we're reading.
  * @token: token to check.
  * @line_number: line number.
  * Return: nothing.
  */
-void treat_token(stack_t **head, char *token, unsigned int line_number)
+void treat_token(stack_t **head, FILE *fp, char *line,
+char *token, unsigned int line_number)
 {
 	char *push_arg;
 	void (*f)(stack_t **head, unsigned int line_number);
@@ -20,18 +23,35 @@ void treat_token(stack_t **head, char *token, unsigned int line_number)
 		if (push_arg != 0)
 		{
 			_push(head, line_number, push_arg);
+			if (error == 1)
+			{
+				free_list(head, fp, line);
+				exit(EXIT_FAILURE);
+			}
 			return;
 		}
+		else
+		{
+			free_list(head, fp, line);
+			exit(EXIT_FAILURE);
+		}
 	}
-
 	f = get_function(token);
-
 	if (!f)
 	{
 		get_invalid_opcode(token, line_number);
+		if (error == 1)
+		{
+			free_list(head, fp, line);
+			exit(EXIT_FAILURE);
+		}
 	}
-
 	f(head, line_number);
+	if (error == 1)
+	{
+		free_list(head, fp, line);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -98,7 +118,8 @@ void get_invalid_opcode(char *token, unsigned int line_number)
 	if (!invalid_opcode)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 	for (i = 0; i < len; i++)
 		invalid_opcode[i] = token[i];
@@ -106,5 +127,5 @@ void get_invalid_opcode(char *token, unsigned int line_number)
 			"L%d: unknown instruction %s\n",
 			line_number, invalid_opcode);
 	free(invalid_opcode);
-	exit(EXIT_FAILURE);
+	error = 1;
 }

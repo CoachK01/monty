@@ -5,6 +5,8 @@
 #include <unistd.h>
 #include <string.h>
 
+extern int error;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,15 +41,16 @@ void _push(stack_t **stack, unsigned int line_number, char *str);
 
 char *check_push_arg(char *token, unsigned int line_number);
 
-void treat_line(stack_t **head, char *line, unsigned int line_number);
+void treat_line(stack_t **head, FILE *fp, char *line, unsigned int line_number);
 
-void treat_token(stack_t **head, char *token, unsigned int line_number);
+void treat_token(stack_t **head, FILE *fp, char *line,
+char *token, unsigned int line_number);
 
 void (*get_function(char *token))(stack_t **, unsigned int);
 
 void get_invalid_opcode(char *token, unsigned int line_number);
 
-void is_number(char *str, unsigned int line_number);
+int is_number(char *str, unsigned int line_number);
 
 void get_usage_err(unsigned int line_number);
 

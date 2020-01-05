@@ -4,11 +4,12 @@
  * treat_line - function that gets the line from monty file and tokenize it
  * to check for the correct command.
  * @head: linked list' head address.
+ * @fp: file pointer.
  * @line: line we're treating from the monty file.
  * @line_number: line number.
  * Return: nothing.
  */
-void treat_line(stack_t **head, char *line, unsigned int line_number)
+void treat_line(stack_t **head, FILE *fp, char *line, unsigned int line_number)
 {
 	char *token = NULL;
 
@@ -17,5 +18,5 @@ void treat_line(stack_t **head, char *line, unsigned int line_number)
 		token = strtok(NULL, " \n");
 	if (!token)
 		return;
-	treat_token(head, token, line_number);
+	treat_token(head, fp, line, token, line_number);
 }
