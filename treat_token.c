@@ -49,10 +49,9 @@ void (*get_function(char *token))(stack_t **, unsigned int)
 		{"swap", _swap},
 		{"add", _add},
 		{"nop", _nop},
+		{"sub", _sub},
 /*
 **
-
-		{"sub", _sub},
 		{"div", _div},
 		{"mul", _mul},
 		{"mod", _mod},
