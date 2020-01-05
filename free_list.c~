@@ -4,8 +4,7 @@
  * free_list - frees the linked list
  * @head: head of the stack
  */
-
-void free_list(stack_t **head)
+void free_list(stack_t **head, FILE *fp, char *line)
 {
 	if (!(*head))
 		return;
