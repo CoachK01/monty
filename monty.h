@@ -41,7 +41,8 @@ void _push(stack_t **stack, unsigned int line_number, char *str);
 
 char *check_push_arg(char *token, unsigned int line_number);
 
-void treat_line(stack_t **head, FILE *fp, char *line, unsigned int line_number);
+void treat_line(stack_t **head, FILE *fp, char *line,
+unsigned int line_number);
 
 void treat_token(stack_t **head, FILE *fp, char *line,
 char *token, unsigned int line_number);
