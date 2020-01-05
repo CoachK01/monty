@@ -109,10 +109,13 @@ void (*get_function(char *token))(stack_t **, unsigned int)
  */
 void get_invalid_opcode(char *token, unsigned int line_number)
 {
-	int i, len;
+	int i, len = 0;
 	char *invalid_opcode;
 
-	for (len = 0; (token[len] != ' ' && token[len] != '\n'); len++)
+	for (
+		len = 0;
+		(token[len] != '\0' && token[len] != ' ' && token[len] != '\n');
+	     len++)
 		;
 	invalid_opcode = malloc(sizeof(char) * (len));
 	if (!invalid_opcode)
