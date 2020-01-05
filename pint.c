@@ -2,7 +2,7 @@
 
 /**
  * _pint - prints the value at the top of the stack.
- * @head: linked list'head address.
+ * @head: the address of the linked list's head.
  * @line_number: line number of line we're reading.
  * Return: nothing
  */
@@ -13,7 +13,7 @@ void _pint(stack_t **head, unsigned int line_number)
 	{
 		dprintf(
 			STDERR_FILENO,
-			"L%d: can't pint, stack empty\n",
+			"L%u: can't pint, stack empty\n",
 			line_number
 			);
 		error = 1;
