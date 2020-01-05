@@ -32,8 +32,7 @@ void _rotr(stack_t **head, unsigned int line_number)
 	if (new == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-		error = 1;
-		return;
+		exit(EXIT_FAILURE);
 	}
 	new->n = n;
 	(*head)->prev = new;
