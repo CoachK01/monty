@@ -16,6 +16,7 @@ int main(int ac, char **av)
 	ssize_t len;
 	stack_t *head = NULL;
 	int line_number = 0;
+	int mode = 0;
 
 	if (ac != 2)
 	{
@@ -33,7 +34,7 @@ int main(int ac, char **av)
 	while ((len = getline(&line, &size, fp)) != -1)
 	{
 		line_number++;
-		treat_line(&head, fp, line, line_number);
+		treat_line(&head, fp, line, line_number, &mode);
 	}
 	free_list(&head, fp, line);
 	exit(EXIT_SUCCESS);

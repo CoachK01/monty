@@ -9,10 +9,11 @@
  * @line: line we're reading.
  * @token: token to check.
  * @line_number: line number.
+ * @mode: 0 if stack, 1 if queue
  * Return: nothing.
  */
 void treat_token(stack_t **head, FILE *fp, char *line,
-char *token, unsigned int line_number)
+char *token, unsigned int line_number, int *mode)
 {
 	char *push_arg;
 	void (*f)(stack_t **head, unsigned int line_number);
@@ -22,7 +23,7 @@ char *token, unsigned int line_number)
 		push_arg = check_push_arg(token, line_number);
 		if (push_arg != 0)
 		{
-			_push(head, line_number, push_arg);
+			_push(head, line_number, push_arg, mode);
 			if (error == 1)
 			{
 				free_list(head, fp, line);
@@ -78,11 +79,6 @@ void (*get_function(char *token))(stack_t **, unsigned int)
 		{"pstr", _pstr},
 		{"rotl", _rotl},
 		{"rotr", _rotr},
-/*
-**
-		{"stack", _stack},
-		{"queue", _queue},
-*/
 		{NULL, NULL}
 	};
 	if (token[0] == '#')

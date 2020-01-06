@@ -37,15 +37,15 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void _push(stack_t **stack, unsigned int line_number, char *str);
+void _push(stack_t **stack, unsigned int line_number, char *str, int *mode);
 
 char *check_push_arg(char *token, unsigned int line_number);
 
 void treat_line(stack_t **head, FILE *fp, char *line,
-unsigned int line_number);
+unsigned int line_number, int *mode);
 
 void treat_token(stack_t **head, FILE *fp, char *line,
-char *token, unsigned int line_number);
+char *token, unsigned int line_number, int *mode);
 
 void (*get_function(char *token))(stack_t **, unsigned int);
 
@@ -84,5 +84,12 @@ void _rotl(stack_t **head, unsigned int line_number);
 void _rotr(stack_t **head, unsigned int line_number);
 
 void free_list(stack_t **head, FILE *fp, char *line);
+
+int check_mode(char *token, int *mode);
+
+void stack_push(stack_t **head, stack_t **new);
+
+void enqueue(stack_t **head, stack_t **new);
+
 
 #endif
